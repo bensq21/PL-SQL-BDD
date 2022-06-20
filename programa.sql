@@ -38,6 +38,10 @@ BEGIN
         
     END LOOP;
 
+EXCEPTION
+    WHEN OTHERS THEN
+       DBMS_OUTPUT.PUT_LINE('Fallo general'); 
+       
 END;
 /
 
@@ -79,6 +83,12 @@ BEGIN
         
     END LOOP;
 
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('El nombre del estudio insertado no corresponde con ningún nombre existente.');
+    WHEN OTHERS THEN
+       DBMS_OUTPUT.PUT_LINE('Fallo general'); 
+       
 end;
 /
 
@@ -106,6 +116,10 @@ BEGIN
         
     END LOOP;
     
+EXCEPTION
+    WHEN OTHERS THEN
+       DBMS_OUTPUT.PUT_LINE('Fallo general'); 
+       
 END;
 /
 
@@ -133,6 +147,10 @@ BEGIN
         
     END LOOP;
     
+EXCEPTION
+    WHEN OTHERS THEN
+       DBMS_OUTPUT.PUT_LINE('Fallo general'); 
+       
 END;
 /
 
@@ -168,6 +186,10 @@ BEGIN
     DBMS_OUTPUT.PUT_LINE( 'COSTE DE ACTORES: ' || F_SUMASALARIO);
     RETURN F_SUMASALARIO;
     
+EXCEPTION
+    WHEN OTHERS THEN
+       DBMS_OUTPUT.PUT_LINE('Fallo general'); 
+       
 END;
 /
 
@@ -205,6 +227,10 @@ BEGIN
     
     END IF;
     
+EXCEPTION
+    WHEN OTHERS THEN
+       DBMS_OUTPUT.PUT_LINE('Fallo general'); 
+       
 END;
 /
 
@@ -239,6 +265,14 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE( 'PRESUPUESETO DENEGADO');
     
     END IF;
-
+    
+EXCEPTION
+    /*COMO PIDO EL NOMBRE DE LA PELICULA PARA HACER UN SELECT QUE DEVUELVA EL ID DE LA PELI, SI NO SALTA EL FALLO SIGNIFICA QUE HAY UNA 
+    PELICULA CON ESE NOMBRE Y POR TANTO TIENE UN ID, POR LO QUE NO SERÁ NECESARIO QUE PONGA ESA EXCEPCIÓN QUE CAPTURE EL FALLO DE NO_DATA_FOUND EN ESAS FUNCIONES*/
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('El titulo insertado no corresponde con ninguna pelicula existente.');
+    WHEN OTHERS THEN
+       DBMS_OUTPUT.PUT_LINE('Fallo general'); 
+       
 END;
 /
